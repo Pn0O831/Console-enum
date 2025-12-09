@@ -33,6 +33,6 @@ class TestInfo : TestPerson
         this.height = height;
         this.weight = weight;
         Console.WriteLine("派生クラス");
-        Console.WriteLine($"体重：{height},年齢：{weight}");
+        Console.WriteLine($"身長：{height},体重：{weight}");
     }
 }
