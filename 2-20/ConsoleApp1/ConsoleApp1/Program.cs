@@ -1,32 +1,35 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System;
+using System.ComponentModel.Design;
 using System.Reflection.Metadata.Ecma335;
 
 abstract class Employee
 {
     public string Id;
     public string Name;
+    public double HoursWorked;
 
-    public Employee(string id, string name)
+    public Employee(string id, string name, double hoursWorked)
     {
         Id = id;
         Name = name;
+        HoursWorked = hoursWorked;
     }
 
-    public abstract int CalculateDailyWage(int hoursWorked);
+    public abstract int CalculateDailyWage();
 }
 
 class FullTimeEmployee:Employee
 {
-    public FullTimeEmployee(string id, string name):base(id, name)
+    public FullTimeEmployee(string id, string name, double hoursWorked):base(id, name,hoursWorked)
     {
     }
-    public override int CalculateDailyWage(int hoursWorked)
+    public override int CalculateDailyWage()
     {
-        int wage = 1250 * hoursWorked;
-        if (hoursWorked > 8)
+        int wage = (int)(1250 * 8);
+        if (HoursWorked > 8)
         {
-            wage += (int)(1250 * 1.25 * (hoursWorked - 8));
+            wage += (int)(1250 * 1.25 * (HoursWorked - 8));
         }
         return wage;
     }
@@ -34,12 +37,12 @@ class FullTimeEmployee:Employee
 
 class ContractEmployee:Employee
 {
-    public ContractEmployee(string id,string name):base(id, name)
+    public ContractEmployee(string id,string name,double hoursWorked):base(id, name, hoursWorked)
     {
     }
-    public override int CalculateDailyWage(int hoursWorked)
+    public override int CalculateDailyWage()
     {
-        int wage = 1000 * hoursWorked;
+        int wage = (int)(1000 * HoursWorked);
         return wage;
     }
 }
@@ -49,13 +52,13 @@ class Program
     static void Main()
     {
         List<Employee> list = new List<Employee>();
-        list.Add(new FullTimeEmployee("E002", "山田太郎"));
-        list.Add(new ContractEmployee("C002", "佐藤花子"));
-        list.Add(new FullTimeEmployee("E003", "鈴木一郎"));
+        list.Add(new FullTimeEmployee("E002", "山田太郎",8.5));
+        list.Add(new ContractEmployee("C002", "佐藤花子",8));
+        list.Add(new FullTimeEmployee("E003", "鈴木一郎",8));
         foreach (var item in list)
         {
-            double wage = item.CalculateDailyWage(8);
-            Console.WriteLine($"社員ID：{item.Id} 名前：{item.Name} 給料：{wage}");
+            double wage = item.CalculateDailyWage();
+            Console.WriteLine($"社員ID：{item.Id} 名前{item.Name} 給料：{wage}");
         }
     }
 }
