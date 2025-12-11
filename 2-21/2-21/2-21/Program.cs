@@ -50,7 +50,7 @@ class Program
 {
     static void Main()
     {
-        List<Employee> list = new List<Employee>();
+        List<IBillable> list = new List<IBillable>();
         list.Add(new FullTimeEmployee("E002", "山田太郎"));
         list.Add(new ContractEmployee("C001", "田中花子"));
         list.Add(new FullTimeEmployee("E003", "鈴木一郎"));
