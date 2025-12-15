@@ -2,21 +2,19 @@
 
 abstract class Employee
 {
-    public void Work(int hours)
-    {
-    }
+    public abstract void Work(int hours);
 }
 
-class FullTimeEmployee
+class FullTimeEmployee : Employee
 {
-    public void Work(int hours)
+    public override void Work(int hours)
     {
         Console.WriteLine($"{hours}時間働きました。");
     }
 }
-class InternEmployee
+class InternEmployee : Employee
 {
-    public void Work(int hours)
+    public override void Work(int hours)
     {
         if (hours > 4)
             Console.WriteLine("最大４時間までしか働けません");
