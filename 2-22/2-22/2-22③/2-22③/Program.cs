@@ -12,12 +12,30 @@ class FullTimeEmployee : Employee
         Console.WriteLine($"{hours}時間働きました。");
     }
 }
-class InternEmployee : Employee
+abstract class LimitedHourEmployee : Employee
 {
+    private readonly int MaxHours;
+
+    protected LimitedHourEmployee(int maxHours)
+    {
+        MaxHours = maxHours;
+    }
     public override void Work(int hours)
     {
-        if (hours > 4)
-            Console.WriteLine("最大４時間までしか働けません");
-        else Console.WriteLine($"{hours}時間働きました");
+        if (hours > MaxHours)
+        {
+            Console.WriteLine($"{MaxHours}時間しか働けません");
+        }
+        else
+        {
+            Console.WriteLine($"{hours}時間働きました");
+        }
+    }
+}
+class InternEmployee : LimitedHourEmployee
+{
+    public InternEmployee() : base(4)
+    {
+
     }
 }
