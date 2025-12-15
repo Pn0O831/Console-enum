@@ -1,14 +1,14 @@
 ﻿// See https://aka.ms/new-console-template for more information
-
+using System.IO;
 using System.Runtime.CompilerServices;
 
 interface IOutput
 {
-    void write(string text);
+    void Write(string text);
 }
 class ConsoleOutput : IOutput
 {
-    public void write(string text)
+    public void Write(string text)
     {
         Console.WriteLine($"出力内容は{text}です。");
     }
@@ -16,9 +16,9 @@ class ConsoleOutput : IOutput
 
 class FileOutput : IOutput
 {
-    public void write( string text )
+    public void Write( string text )
     {
-        Console.WriteLine($"出力内容は{text}です。");
+        File.AppendAllText("output.txt", "2-22⑤のテスト");
     }
 }
 class ReportPrinter
@@ -31,6 +31,6 @@ class ReportPrinter
 
     public void Print( string text )
     {
-        OutPut.write( text );
+        OutPut.Write( text );
     }
 }
