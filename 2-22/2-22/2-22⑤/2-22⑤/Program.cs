@@ -10,7 +10,7 @@ class ConsoleOutput : IOutput
 {
     public void Write(string text)
     {
-        Console.WriteLine($"出力内容は{text}です。");
+        Console.WriteLine(text);
     }
 }
 
@@ -18,7 +18,7 @@ class FileOutput : IOutput
 {
     public void Write( string text )
     {
-        File.AppendAllText("output.txt", "2-22⑤のテスト");
+        File.AppendAllText("output.txt", text + Environment.NewLine);
     }
 }
 class ReportPrinter
