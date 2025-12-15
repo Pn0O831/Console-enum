@@ -4,8 +4,8 @@ using System.IO;
 //①
 class Report
 {
-    public string EmployeeName;
-    public int HoursWorked;
+    private string EmployeeName;
+    private int HoursWorked;
 }
 
 class ReportCalculator
